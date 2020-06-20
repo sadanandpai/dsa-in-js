@@ -26,9 +26,7 @@ public class ArticulationPoint extends GraphTraversal {
 		graph.insertEdge(4, 5);
 
 		ArticulationPoint dfs = new ArticulationPoint(vertices);
-
 		dfs.depthFirstSearchRecursive(graph, 1);
-
 	}
 
 	public void processVertexEarly(int vertex) {

@@ -1,8 +1,8 @@
 package graphs.revision;
 
-public class BFS extends GraphTraversal{
+public class ShortestDistance extends GraphTraversal{
 	
-	BFS(int vertices) {
+	ShortestDistance(int vertices) {
 		super(vertices);
 	}
 
@@ -20,14 +20,16 @@ public class BFS extends GraphTraversal{
 		graph.insertEdge(3, 4);
 		graph.insertEdge(4, 5);
 
-		BFS bfs = new BFS(vertices);
-		System.out.println("Breadth First Search of the graph");
+		ShortestDistance bfs = new ShortestDistance(vertices);
 		bfs.breadthFirstSearch(graph, 1);
+		
+		System.out.println("Shortest distance from 1 to 4");
+		bfs.findPath(1, 4);
 	}
 	
 	@Override
 	public void processVertexEarly(int x) {
-		System.out.print(x + " ");
+		
 	}
 	
 	@Override
@@ -38,6 +40,16 @@ public class BFS extends GraphTraversal{
 	@Override
 	public void processVertexLate(int y){
 		
+	}
+	
+	public void findPath(int x, int y) {
+		if (x == y || y == 0) {
+			System.out.println(y);
+			return;
+		} else {
+			System.out.print(y + "->");
+			findPath(x, parents[y]);
+		}
 	}
 
 }

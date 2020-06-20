@@ -30,7 +30,7 @@ public class BiPartite extends GraphTraversal{
 		BiPartite bfs = new BiPartite(vertices);
 		
 		bfs.color[1] = 1;
-		bfs.breadthFirstSearch(graph);
+		bfs.breadthFirstSearch(graph, 1);
 		
 		if(bfs.bipartite)
 			System.out.println("Graph is bipartite");

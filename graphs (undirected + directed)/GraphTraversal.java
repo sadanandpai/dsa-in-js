@@ -22,60 +22,60 @@ public abstract class GraphTraversal {
 		exitTime = new int[vertices + 1];
 	}
 
-	public void breadthFirstSearch(Graph graph) {
+	public void breadthFirstSearch(Graph graph, int vertex) {
 		LinkedList<Integer> queue = new LinkedList<Integer>();
-		queue.offer(1);
-		discovered[1] = true;
+		queue.offer(vertex);
+		discovered[vertex] = true;
 
 		while (!queue.isEmpty()) {
-			int vertex = queue.poll();
+			int x = queue.poll();
 
-			processVertexEarly(vertex);
-			processed[vertex] = true;
+			processVertexEarly(x);
+			processed[x] = true;
 
-			Iterator<Edge> it = graph.adjacencyList.get(vertex).iterator();
+			Iterator<Edge> it = graph.adjacencyList.get(x).iterator();
 			while (it.hasNext()) {
-				int nextVertex = it.next().y;
+				int y = it.next().y;
 
-				if (!processed[nextVertex] || graph.directed)
-					processEdge(vertex, nextVertex);
+				if (!processed[y] || graph.directed)
+					processEdge(x, y);
 
-				if (!discovered[nextVertex]) {
-					queue.offer(nextVertex);
-					discovered[nextVertex] = true;
-					parents[nextVertex] = vertex;
+				if (!discovered[y]) {
+					queue.offer(y);
+					discovered[y] = true;
+					parents[y] = x;
 				}
 			}
-			processVertexLate(vertex);
+			processVertexLate(x);
 		}
 	}
 
-	public void depthFirstSearch(Graph graph) {
+	public void depthFirstSearch(Graph graph, int vertex) {
 		Stack<Integer> stack = new Stack<Integer>();
-		stack.push(1);
-		discovered[1] = true;
+		stack.push(vertex);
+		discovered[vertex] = true;
 
 		while (!stack.isEmpty()) {
-			int vertex = stack.pop();
-			processVertexEarly(vertex);
+			int x = stack.pop();
+			processVertexEarly(x);
 
-			Iterator<Edge> it = graph.adjacencyList.get(vertex).iterator();
+			Iterator<Edge> it = graph.adjacencyList.get(x).iterator();
 			while (it.hasNext()) {
-				int nextVertex = it.next().y;
-				parents[nextVertex] = vertex;
+				int y = it.next().y;
+				parents[y] = x;
 
-				if (!discovered[nextVertex]) {
-					stack.push(nextVertex);
-					processEdge(vertex, nextVertex);
-					discovered[nextVertex] = true;
-				} else if ((!processed[nextVertex] && parents[vertex] != nextVertex) || graph.directed)
-					processEdge(vertex, nextVertex);
+				if (!discovered[y]) {
+					stack.push(y);
+					processEdge(x, y);
+					discovered[y] = true;
+				} else if ((!processed[y] && parents[x] != y) || graph.directed)
+					processEdge(x, y);
 
 				if (finished)
 					return;
 			}
-			processed[vertex] = true;
-			processVertexLate(vertex);
+			processed[x] = true;
+			processVertexLate(x);
 		}
 	}
 
@@ -86,14 +86,14 @@ public abstract class GraphTraversal {
 
 		Iterator<Edge> it = graph.adjacencyList.get(vertex).iterator();
 		while (it.hasNext()) {
-			int nextVertex = it.next().y;
+			int y = it.next().y;
 
-			if (!discovered[nextVertex]) {
-				parents[nextVertex] = vertex;
-				processEdge(vertex, nextVertex);
-				depthFirstSearchRecursive(graph, nextVertex);
-			} else if ((!processed[nextVertex] && parents[vertex] != nextVertex) || graph.directed)
-				processEdge(vertex, nextVertex);
+			if (!discovered[y]) {
+				parents[y] = vertex;
+				processEdge(vertex, y);
+				depthFirstSearchRecursive(graph, y);
+			} else if ((!processed[y] && parents[vertex] != y) || graph.directed)
+				processEdge(vertex, y);
 
 			if (finished)
 				return;
