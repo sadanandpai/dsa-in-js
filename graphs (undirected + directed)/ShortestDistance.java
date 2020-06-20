@@ -1,4 +1,4 @@
-package graphs.revision;
+package graphs;
 
 public class ShortestDistance extends GraphTraversal{
 	
@@ -21,10 +21,10 @@ public class ShortestDistance extends GraphTraversal{
 		graph.insertEdge(4, 5);
 
 		ShortestDistance bfs = new ShortestDistance(vertices);
-		bfs.breadthFirstSearch(graph, 1);
+		bfs.breadthFirstSearch(graph, 6);
 		
 		System.out.println("Shortest distance from 1 to 4");
-		bfs.findPath(1, 4);
+		bfs.findPath(6, 4);
 	}
 	
 	@Override

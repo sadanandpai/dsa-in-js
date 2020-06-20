@@ -1,4 +1,4 @@
-package graphs.revision;
+package graphs;
 
 public class ArticulationPoint extends GraphTraversal {
 
