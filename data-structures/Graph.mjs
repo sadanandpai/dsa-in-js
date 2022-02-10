@@ -23,6 +23,10 @@ export class Graph {
     this.adjacencyList = [];
   }
 
+  insertEdges(edges) {
+    edges.forEach((edge) => this.insertEdge(edge[0], edge[1]));
+  }
+
   insertEdge(x, y, weight = 1) {
     this.addEdge(x, y, weight);
 
