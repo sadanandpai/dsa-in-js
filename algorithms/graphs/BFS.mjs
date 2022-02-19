@@ -22,7 +22,7 @@ export default class BreadthFirstSearch {
       let node = this.graph.adjacencyList[v];
       while (node) {
         if (!this.processed[node.y] || this.graph.isDirected) {
-          this.processEdge?.(v, node.y);
+          this.processEdge?.(v, node.y, node.weight);
         }
 
         if (!this.discovered[node.y]) {

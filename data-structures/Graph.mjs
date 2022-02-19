@@ -24,7 +24,7 @@ export class Graph {
   }
 
   insertEdges(edges) {
-    edges.forEach((edge) => this.insertEdge(edge[0], edge[1]));
+    edges.forEach((edge) => this.insertEdge(edge[0], edge[1], edge[2]));
   }
 
   insertEdge(x, y, weight = 1) {
