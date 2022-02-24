@@ -9,12 +9,10 @@ import QuickSort  from "../../algorithms/sorting/QuickSort.mjs";
 
 const array = [7, 9, 4, 3, 6, 7, 1, 5];
 
-// with unsorted array
 const heap = new HeapSort([...array]);
 heap.sort();
 console.log(heap.array);
 
-// with unsorted array
 const merge = new MergeSort([...array]);
 console.log(merge.sort());
 
