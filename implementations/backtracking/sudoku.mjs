@@ -1,10 +1,8 @@
-let isFinished = false;
-
 class Sudoku {
   constructor(board) {
     this.board = board;
     this.m = Math.floor(Math.sqrt(board.length));
-    this.n = Math.ceil(Math.sqrt(board.length));
+    this.n = board.length / this.m;
     this.length = board.length;
     this.isFinished = false;
   }
